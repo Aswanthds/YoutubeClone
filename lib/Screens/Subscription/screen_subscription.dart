@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone_ui/Screens/Home/widgets/shorts.dart';
-
+import 'package:youtube_clone_ui/Screens/Home/widgets/community.dart';
 import 'package:youtube_clone_ui/Screens/Home/widgets/videowidget.dart';
 import 'package:youtube_clone_ui/data.dart';
 
 class SubscriptionScreen extends StatelessWidget {
-   SubscriptionScreen({super.key});
+  SubscriptionScreen({super.key});
   YTdata ytdata = YTdata();
   @override
   Widget build(BuildContext context) {
@@ -71,23 +71,30 @@ class SubscriptionScreen extends StatelessWidget {
             ),
           ),
           SliverList(
-              delegate: SliverChildListDelegate([
-            VideoThumbSecWidget(video: videos[0]),
-            SizedBox(
-                      height: 260,
-                      width: double.infinity,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 10, left: 10),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: ytdata.shortsList.length,
-                          itemBuilder: (context, index) {
-                            return ShortsWidget(ytdata: ytdata, index: index,);
-                          },
-                        ),
-                      ),
+            delegate: SliverChildListDelegate(
+              [
+                VideoThumbSecWidget(video: videos[0]),
+                SizedBox(
+                  height: 260,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10, left: 10),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: ytdata.shortsList.length,
+                      itemBuilder: (context, index) {
+                        return ShortsWidget(
+                          ytdata: ytdata,
+                          index: index,
+                        );
+                      },
                     ),
-          ]))
+                  ),
+                ),
+                CommunityPostWidget()
+              ],
+            ),
+          ),
         ],
       ),
     );
